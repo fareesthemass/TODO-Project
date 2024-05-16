@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <title>To Do List</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
@@ -38,12 +39,36 @@
             color: antiquewhite;
             font-style: italic;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .delbutton {
             background-color: red;
             color: antiquewhite;
             font-style: italic;
+            font-weight: bold;
+        }
+
+        .complete{
+            background-color:antiquewhite;
+            color:rgb(2, 45, 2);
+            font-weight: bold;
+            font-style: oblique;
+        }
+
+        .complete:hover{
+            cursor: pointer;
+            background-color: wheat;
+        }
+
+        .delbutton:hover{
+            cursor: pointer;
+            background-color: brown;
+        }
+
+        .addbutton:hover{
+            cursor: pointer;
+            background-color:darkgreen
         }
     </style>
 <script>
@@ -53,14 +78,23 @@
 
     function add() {
     var li = document.createElement("li")
-    li.innerHTML = input.value + "<button onclick='del(event)' class='delbutton'>Delete</button>"
-    console.log(li)
+    li.innerHTML = input.value +"<button class='complete' onclick=complete(event)>Complete</button>" +"<button onclick='del(event)' class='delbutton'>Delete</button>"
     ul.append(li)
     }
 
     function del(event) {
     event.target.parentElement.remove()
     }
+
+    function complete(event)
+    {   
+        console.log(event)
+        event.target.textContent="Completed"
+        event.target.style.backgroundColor="green"
+        event.target.style.color="white"
+        event.target.style.fontStyle="italic"
+    }
+    
 </script>
 
 
