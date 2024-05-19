@@ -14,9 +14,11 @@
         <input id="text" placeholder="Enter a Text">
         <button class="addbutton" onclick="add()">Add</button>
         <div class="container">
-            <ol id="list-container">
-                
-            </ol>
+            <table >
+                <ol class="list-container">
+                    
+                </ol>
+            </table>
         </div>
     </center>
 
@@ -50,53 +52,51 @@
             font-weight: bold;
         }
 
-        .complete{
-            background-color:antiquewhite;
-            color:rgb(2, 45, 2);
+        .complete {
+            background-color: antiquewhite;
+            color: rgb(2, 45, 2);
             font-weight: bold;
             font-style: oblique;
         }
 
-        .complete:hover{
+        .complete:hover {
             cursor: pointer;
             background-color: wheat;
         }
 
-        .delbutton:hover{
+        .delbutton:hover {
             cursor: pointer;
             background-color: brown;
         }
 
-        .addbutton:hover{
+        .addbutton:hover {
             cursor: pointer;
-            background-color:darkgreen
+            background-color: darkgreen
         }
     </style>
-<script>
-    var ul = document.getElementById("list-container")
-    var input = document.getElementById("text")
-    var table=document.getElementById("table")
+    <script>
+        var table = document.querySelector(".list-container")
+        var input = document.getElementById("text")
 
-    function add() {
-    var li = document.createElement("li")
-    li.innerHTML = input.value +"<button class='complete' onclick=complete(event)>Complete</button>" +"<button onclick='del(event)' class='delbutton'>Delete</button>"
-    ul.append(li)
-    }
 
-    function del(event) {
-    event.target.parentElement.remove()
-    }
+        function add() {
+            var li = document.createElement('tr')
+            li.innerHTML = `<li><td>${input.value}</td><td><button class='complete' onclick=complete(event)>Complete</button></td> <td><button onclick='del(event)' class='delbutton'>Delete</button></td></li>`
+            table.appendChild(li)
+        }
 
-    function complete(event)
-    {   
-        console.log(event)
-        event.target.textContent="Completed"
-        event.target.style.backgroundColor="green"
-        event.target.style.color="white"
-        event.target.style.fontStyle="italic"
-    }
-    
-</script>
+        function del(event) {
+            event.target.parentNode.parentNode.remove()
+        }
+
+        function complete(event) {
+            event.target.textContent = "Completed"
+            event.target.style.backgroundColor = "green"
+            event.target.style.color = "white"
+            event.target.style.fontStyle = "italic"
+        }
+
+    </script>
 
 
 </body>
